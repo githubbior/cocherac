@@ -1,63 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Pagos de Garage</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Pagos de Garage</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Gestión de Pagos de Garage</h1>
-    <div id="auth-container">
-        <button id="login-button">Iniciar Sesión con Google</button>
-    </div>
-    <div id="app-container" style="display: none;">
-        <h2>Subir Comprobante de Pago</h2>
-        <form id="payment-form">
-            <label for="amount">Importe:</label>
-            <input type="text" inputmode="decimal" id="amount" required placeholder="Ej: 123,45">
-            <br><br>
-            <label for="payment-date">Fecha de Pago:</label>
-            <input type="date" id="payment-date" required>
-            <br><br>
-            <label for="proof-file">Comprobante (PDF, JPG, PNG):</label>
-            <div id="drop-zone">
-                <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
-                <input type="file" id="proof-file" accept="application/pdf,image/jpeg,image/png" required hidden>
-                <p id="file-name-display"></p>
-            </div>
-            <br>
-            <button type="submit">Subir Pago</button>
-        </form>
+  <h1>Gestión de Pagos de Garage</h1>
 
-        <div class="status-container" style="display: none;">
-            <h3>Estado del Comprobante:</h3>
-            <div class="status-tracker">
-                <div class="step" id="status-subido">
-                    <div class="circle"></div><div class="label">Subido</div>
-                </div>
-                <div class="line"></div>
-                <div class="step" id="status-registrado">
-                    <div class="circle"></div><div class="label">Registrado</div>
-                </div>
-                <div class="line"></div>
-                <div class="step" id="status-validado">
-                    <div class="circle"></div><div class="label">Validado</div>
-                </div>
-                <div class="line"></div>
-                <div class="step" id="status-final">
-                    <div class="circle"></div><div class="label">Finalizado</div>
-                </div>
-            </div>
-            <div id="final-status-message" class="final-status"></div>
-        </div>
+  <div id="auth-container">
+    <button id="login-button">Iniciar Sesión con Google</button>
+  </div>
 
-        <button id="logout-button">Cerrar Sesión</button>
+  <div id="app-container" style="display: none;">
+    <h2>Subir Comprobante de Pago</h2>
+    <form id="payment-form">
+      <label for="amount">Importe:</label>
+      <input type="text" inputmode="decimal" id="amount-input" required placeholder="Ej: 123,45">
+      <br><br>
+      <label for="payment-date">Fecha de Pago:</label>
+      <input type="date" id="payment-date" required>
+      <br><br>
+      <label for="proof-file">Comprobante (PDF, JPG, PNG):</label>
+      <div id="drop-zone">
+        <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+        <input type="file" id="file-input" accept="application/pdf,image/jpeg,image/png" required hidden>
+        <p id="file-name-display"></p>
+      </div>
+      <br>
+      <button type="button" id="send-button">Subir Pago</button>
+    </form>
+
+    <div class="status-container" style="display: none;">
+      <h3>Estado del Comprobante:</h3>
+      <div id="status-tracker"></div>
+      <div id="final-status-message" class="final-status"></div>
     </div>
 
-    <script src="config.js"></script>
-    <script src="script.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-    <!-- <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script> -->
+    <button id="logout-button">Cerrar Sesión</button>
+  </div>
+
+  <script src="config.js"></script>
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="ui.js"></script>
+  <script type="module" src="status.js"></script>
+  <script type="module" src="payment.js"></script>
+  <script type="module" src="main.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js"></script>
 </body>
 </html>
